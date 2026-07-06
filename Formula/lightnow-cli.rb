@@ -3,8 +3,8 @@ class LightnowCli < Formula
 
   desc "Command-line interface for LightNow MCP configuration"
   homepage "https://github.com/lightnow-ai/lightnow-cli"
-  url "https://files.pythonhosted.org/packages/34/88/37d9b152d92c5209e60cfe58ecd848f1411a8a029dc1b595789cd0455f7c/lightnow_cli-1.0.4.tar.gz"
-  sha256 "321ad65225f1677e0ad176324d12d260b470591520845561f3a64ba3011eda95"
+  url "https://files.pythonhosted.org/packages/28/9e/f3d14298cdac9d0aced002a2ee4b95ef32827248c6ac72c502509a99f6da/lightnow_cli-1.0.5.tar.gz"
+  sha256 "71c0b98801ff0e6c159da00e62d7004fc47af5ea655eb5a84352de39d7b8f695"
   license "Apache-2.0"
 
   depends_on "rust" => :build
@@ -146,6 +146,6 @@ class LightnowCli < Formula
   end
 
   test do
-    assert_match "LightNow CLI 1.0.4", shell_output("#{bin}/lightnow --version")
+    assert_match "LightNow CLI 1.0.5", shell_output("#{bin}/lightnow --version")
   end
 end
