@@ -1,8 +1,11 @@
 # Homebrew Tap for LightNow
 
-This repository is prepared for public Homebrew formulas:
+This repository publishes public Homebrew formulas:
 
 - `lightnow-cli`
+
+It also contains a release template for:
+
 - `lightnow-proxy`
 
 `Formula/lightnow-cli.rb` is based on the published PyPI `lightnow-cli` 1.0.3
@@ -14,13 +17,15 @@ and SHA256 checksums.
 
 ## User Install Commands
 
-After publishing the tap:
+Install the LightNow CLI:
 
 ```sh
 brew tap lightnow-ai/tap
 brew install lightnow-cli
-brew install lightnow-proxy
 ```
+
+`lightnow-proxy` will be available through Homebrew after the first
+`lightnow-proxy` package release.
 
 ## Release Checklist
 
