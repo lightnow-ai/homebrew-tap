@@ -2,8 +2,8 @@ class LightnowProxy < Formula
   include Language::Python::Virtualenv
 
   desc "Local LightNow MCP proxy for centrally managed client configuration"
-  homepage "https://github.com/lightnow-ai/mcp-proxy"
-  url "https://github.com/lightnow-ai/mcp-proxy/releases/download/vVERSION/lightnow_proxy-VERSION.tar.gz"
+  homepage "https://github.com/lightnow-ai/lightnow-proxy"
+  url "https://github.com/lightnow-ai/lightnow-proxy/releases/download/vVERSION/lightnow_proxy-VERSION.tar.gz"
   sha256 "REPLACE_WITH_RELEASE_SHA256"
   license "Apache-2.0"
 
