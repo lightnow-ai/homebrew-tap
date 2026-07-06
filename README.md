@@ -3,17 +3,13 @@
 This repository publishes public Homebrew formulas:
 
 - `lightnow-cli`
-
-It also contains a release template for:
-
 - `lightnow-proxy`
 
 `Formula/lightnow-cli.rb` is based on the published PyPI `lightnow-cli` 1.0.3
 source distribution.
 
-`Formula/lightnow-proxy.rb.in` remains a template until the first
-`lightnow-proxy` release exists, because Homebrew formulas must pin stable URLs
-and SHA256 checksums.
+`Formula/lightnow-proxy.rb` is based on the published PyPI `lightnow-proxy`
+1.0.0 source distribution.
 
 ## User Install Commands
 
@@ -24,8 +20,12 @@ brew tap lightnow-ai/tap
 brew install lightnow-cli
 ```
 
-`lightnow-proxy` will be available through Homebrew after the first
-`lightnow-proxy` package release.
+Install the LightNow Local Proxy:
+
+```sh
+brew tap lightnow-ai/tap
+brew install lightnow-proxy
+```
 
 ## Release Checklist
 
