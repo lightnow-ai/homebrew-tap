@@ -3,8 +3,8 @@ class LightnowProxy < Formula
 
   desc "Local LightNow MCP proxy for centrally managed client configuration"
   homepage "https://github.com/lightnow-ai/lightnow-proxy"
-  url "https://github.com/lightnow-ai/lightnow-proxy/releases/download/v1.0.0/lightnow_proxy-1.0.0.tar.gz"
-  sha256 "f62530f5ea1660315ce84d832799ba661bcd6219a8a973521826a2df43187c6a"
+  url "https://files.pythonhosted.org/packages/51/f9/2eddc5ce9a863422b5aa63c0a29c2695ba946c52b352aa38f716393c416c/lightnow_proxy-1.0.1.tar.gz"
+  sha256 "5727e4cdb3cc9b68bfb8e58c9b3842bd4c90516d0cb88c748d5ef9645c3c299e"
   license "Apache-2.0"
 
   depends_on "pkgconf" => :build
@@ -227,6 +227,6 @@ class LightnowProxy < Formula
   end
 
   test do
-    assert_match "LightNow MCP proxy", shell_output("#{bin}/lightnow-proxy --help")
+    assert_match "lightnow-proxy 1.0.1", shell_output("#{bin}/lightnow-proxy --version")
   end
 end

@@ -9,7 +9,7 @@ This repository publishes public Homebrew formulas:
 source distribution.
 
 `Formula/lightnow-proxy.rb` is based on the published PyPI `lightnow-proxy`
-1.0.0 source distribution.
+1.0.1 source distribution.
 
 ## User Install Commands
 
