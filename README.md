@@ -5,7 +5,7 @@ This repository publishes public Homebrew formulas:
 - `lightnow-cli`
 - `lightnow-proxy`
 
-`Formula/lightnow-cli.rb` is based on the published PyPI `lightnow-cli` 1.0.3
+`Formula/lightnow-cli.rb` is based on the published PyPI `lightnow-cli` 1.0.4
 source distribution.
 
 `Formula/lightnow-proxy.rb` is based on the published PyPI `lightnow-proxy`
