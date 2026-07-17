@@ -93,12 +93,42 @@ if [ "$version_order" -eq 0 ]; then
   exit 0
 fi
 
-brew bump-formula-pr \
-  --write-only \
-  --version="$version" \
-  --python-package-name="$package" \
-  --install-dependencies \
-  "$formula_ref"
+formula_path="$(git rev-parse --show-toplevel)/Formula/${formula}.rb"
+python3 - \
+  "$formula_path" \
+  "$current_url" \
+  "$current_sha256" \
+  "$sdist_url" \
+  "$sdist_sha256" <<'PY'
+from pathlib import Path
+import sys
+
+path = Path(sys.argv[1])
+current_url, current_sha256, next_url, next_sha256 = sys.argv[2:]
+contents = path.read_text()
+current_stanzas = f'  url "{current_url}"\n  sha256 "{current_sha256}"'
+next_stanzas = f'  url "{next_url}"\n  sha256 "{next_sha256}"'
+
+if contents.count(current_stanzas) != 1:
+    raise SystemExit(
+        f"expected exactly one matching URL/SHA stanza in {path}, refusing to edit"
+    )
+
+path.write_text(contents.replace(current_stanzas, next_stanzas, 1))
+PY
+
+update_resources() {
+  brew update-python-resources \
+    --ignore-main-package-cooldown \
+    --version="$version" \
+    --package-name="$package" \
+    "$formula_ref"
+}
+
+if ! update_resources; then
+  echo "Homebrew resource resolution failed; retrying the same command once." >&2
+  update_resources
+fi
 
 resolved_version="$(brew info --json=v2 "$formula_ref" | python3 -c 'import json, sys; print(json.load(sys.stdin)["formulae"][0]["versions"]["stable"])')"
 if [ "$resolved_version" != "$version" ]; then
