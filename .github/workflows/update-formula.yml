@@ -57,7 +57,7 @@ jobs:
           brew test "$formula_ref"
 
       - name: Publish verified release to catalog
-        run: scripts/update-release-catalog.py "$FORMULA" "$VERSION"
+        run: python3 scripts/update-release-catalog.py "$FORMULA" "$VERSION"
 
       - name: Commit formula update
         run: |
