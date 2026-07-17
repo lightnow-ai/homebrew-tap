@@ -5,11 +5,10 @@ This repository publishes public Homebrew formulas:
 - `lightnow-cli`
 - `lightnow-proxy`
 
-`Formula/lightnow-cli.rb` is based on the published PyPI `lightnow-cli` 1.0.5
-source distribution.
-
-`Formula/lightnow-proxy.rb` is based on the published PyPI `lightnow-proxy`
-1.0.1 source distribution.
+Both formulas are generated from the corresponding published PyPI source
+distribution. A successful package release dispatches a formula update to this
+repository; the update is committed only after Homebrew audit, source install,
+and formula tests pass.
 
 ## User Install Commands
 
@@ -27,21 +26,26 @@ brew tap lightnow-ai/tap
 brew install lightnow-proxy
 ```
 
-## Release Checklist
+## Automated Release Flow
 
-1. Publish the Python package release.
-2. Verify the GitHub Release contains the distribution artifacts.
-3. Generate or update the formula from the release artifact URL and SHA256.
-4. Run:
+1. `lightnow-cli` or `lightnow-proxy` publishes its package to PyPI.
+2. The release workflow sends a `python-release-published` repository dispatch
+   containing the formula and exact version.
+3. `.github/workflows/update-formula.yml` verifies that the PyPI source
+   distribution exists, regenerates the formula URL, checksum, and Python
+   resources, then runs:
    ```sh
-   brew audit --strict --online Formula/lightnow-cli.rb
-   brew audit --strict --online Formula/lightnow-proxy.rb
-   brew install --build-from-source Formula/lightnow-cli.rb
-   brew install --build-from-source Formula/lightnow-proxy.rb
-   brew test Formula/lightnow-cli.rb
-   brew test Formula/lightnow-proxy.rb
+   brew style <formula>
+   brew audit --strict --online <formula>
+   brew install --build-from-source <formula>
+   brew test <formula>
    ```
-5. Commit and push the formula updates.
+4. The workflow commits the generated formula update directly to `main`.
+
+For recovery or an initial backfill, run the `Update formula` workflow manually
+with one of the two allowlisted formula names and an already published version.
+The manual path performs exactly the same validation and update steps as a
+release dispatch.
 
 ## Repository Setup
 

@@ -227,6 +227,6 @@ class LightnowProxy < Formula
   end
 
   test do
-    assert_match "lightnow-proxy 1.1.0", shell_output("#{bin}/lightnow-proxy --version")
+    assert_match version.to_s, shell_output("#{bin}/lightnow-proxy --version")
   end
 end
