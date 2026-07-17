@@ -56,14 +56,17 @@ jobs:
           brew install --build-from-source "$formula_ref"
           brew test "$formula_ref"
 
+      - name: Publish verified release to catalog
+        run: scripts/update-release-catalog.py "$FORMULA" "$VERSION"
+
       - name: Commit formula update
         run: |
-          if git diff --quiet -- "Formula/${FORMULA}.rb"; then
-            echo "Formula already represents ${FORMULA} ${VERSION}."
+          if git diff --quiet -- "Formula/${FORMULA}.rb" releases.json; then
+            echo "Formula and release catalog already represent ${FORMULA} ${VERSION}."
             exit 0
           fi
           git config user.name "lightnow-release-bot"
           git config user.email "development@lightnow.ai"
-          git add "Formula/${FORMULA}.rb"
+          git add "Formula/${FORMULA}.rb" releases.json
           git commit -m "chore(formula): update ${FORMULA} to ${VERSION}"
           git push origin HEAD:main

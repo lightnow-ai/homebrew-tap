@@ -10,6 +10,17 @@ permissions:
   contents: read
 
 jobs:
+  catalog:
+    name: Test release catalog
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tap
+        uses: actions/checkout@v4
+      - name: Verify release catalog
+        run: |
+          python3 scripts/update-release-catalog.py --check
+          python3 -m unittest discover -s tests -p 'test_*.py'
+
   test:
     name: Test ${{ matrix.formula }}
     runs-on: macos-15
