@@ -1,0 +1,39 @@
+name: Formula CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test ${{ matrix.formula }}
+    runs-on: macos-15
+    strategy:
+      fail-fast: false
+      matrix:
+        formula:
+          - lightnow-cli
+          - lightnow-proxy
+
+    steps:
+      - name: Checkout tap
+        uses: actions/checkout@v4
+
+      - name: Register checkout as Homebrew tap
+        run: |
+          tap_dir="$(brew --repository)/Library/Taps/lightnow-ai/homebrew-tap"
+          mkdir -p "$(dirname "$tap_dir")"
+          ln -s "$GITHUB_WORKSPACE" "$tap_dir"
+
+      - name: Verify formula
+        run: |
+          formula_ref="lightnow-ai/tap/${{ matrix.formula }}"
+          brew style "$formula_ref"
+          brew audit --strict --online "$formula_ref"
+          brew install --build-from-source "$formula_ref"
+          brew test "$formula_ref"

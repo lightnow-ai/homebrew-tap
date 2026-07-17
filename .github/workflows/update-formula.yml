@@ -1,0 +1,69 @@
+name: Update formula
+
+on:
+  repository_dispatch:
+    types:
+      - python-release-published
+  workflow_dispatch:
+    inputs:
+      formula:
+        description: Formula to update
+        required: true
+        type: choice
+        options:
+          - lightnow-cli
+          - lightnow-proxy
+      version:
+        description: Published PyPI version
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: homebrew-formula-updates
+  cancel-in-progress: false
+
+jobs:
+  update:
+    name: Update ${{ github.event.client_payload.formula || inputs.formula }}
+    runs-on: macos-15
+    env:
+      FORMULA: ${{ github.event.client_payload.formula || inputs.formula }}
+      VERSION: ${{ github.event.client_payload.version || inputs.version }}
+
+    steps:
+      - name: Checkout tap
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Register checkout as Homebrew tap
+        run: |
+          tap_dir="$(brew --repository)/Library/Taps/lightnow-ai/homebrew-tap"
+          mkdir -p "$(dirname "$tap_dir")"
+          ln -s "$GITHUB_WORKSPACE" "$tap_dir"
+
+      - name: Generate formula from published package
+        run: scripts/update-formula.sh "$FORMULA" "$VERSION"
+
+      - name: Verify formula
+        run: |
+          formula_ref="lightnow-ai/tap/$FORMULA"
+          brew style "$formula_ref"
+          brew audit --strict --online "$formula_ref"
+          brew install --build-from-source "$formula_ref"
+          brew test "$formula_ref"
+
+      - name: Commit formula update
+        run: |
+          if git diff --quiet -- "Formula/${FORMULA}.rb"; then
+            echo "Formula already represents ${FORMULA} ${VERSION}."
+            exit 0
+          fi
+          git config user.name "lightnow-release-bot"
+          git config user.email "development@lightnow.ai"
+          git add "Formula/${FORMULA}.rb"
+          git commit -m "chore(formula): update ${FORMULA} to ${VERSION}"
+          git push origin HEAD:main

@@ -3,8 +3,8 @@ class LightnowCli < Formula
 
   desc "Command-line interface for LightNow MCP configuration"
   homepage "https://github.com/lightnow-ai/lightnow-cli"
-  url "https://files.pythonhosted.org/packages/28/9e/f3d14298cdac9d0aced002a2ee4b95ef32827248c6ac72c502509a99f6da/lightnow_cli-1.0.5.tar.gz"
-  sha256 "71c0b98801ff0e6c159da00e62d7004fc47af5ea655eb5a84352de39d7b8f695"
+  url "https://files.pythonhosted.org/packages/b3/4c/e404af532ca0e86f3d5983e437f05b5767cd66a1220a78124ee8f04496f9/lightnow_cli-1.3.0.tar.gz"
+  sha256 "e1a0ca8724637201d60ec00b4686837b7e878fb2438b10b332e949a31d393eb7"
   license "Apache-2.0"
 
   depends_on "rust" => :build
@@ -22,8 +22,8 @@ class LightnowCli < Formula
   end
 
   resource "anyio" do
-    url "https://files.pythonhosted.org/packages/3b/72/5562aabb8dd7181e8e860622a38bea08d17842b99ecd4c91f84ac95251b0/anyio-4.14.1.tar.gz"
-    sha256 "8d648a3544c1a700e3ff78615cd679e4c5c3f149904287e73687b2596963629e"
+    url "https://files.pythonhosted.org/packages/61/cc/a381afa6efea9f496eff839d4a6a1aed3bfafc7b3ab4b0d1b243a12573dd/anyio-4.14.2.tar.gz"
+    sha256 "cfa139f3ed1a23ee8f88a145ddb5ac7605b8bbfd8592baacd7ce3d8bb4313c7f"
   end
 
   resource "attrs" do
@@ -34,6 +34,11 @@ class LightnowCli < Formula
   resource "certifi" do
     url "https://files.pythonhosted.org/packages/c9/c7/424b75da314c1045981bd9777432fad05a9e0c69daa4ed7e308bbaffe405/certifi-2026.6.17.tar.gz"
     sha256 "024c88eeec92ca068db80f02b8b07c9cef7b9fe261d1d535abfd5abd6f6af432"
+  end
+
+  resource "filelock" do
+    url "https://files.pythonhosted.org/packages/83/2b/8b6480a70a647035334a604d0931926de4b5cd1f57835d45ad5eed2b1a1e/filelock-3.30.0.tar.gz"
+    sha256 "1774e682dbe443bd60f9609162fc596e2c80dc84ffc2957068953406d0520090"
   end
 
   resource "h11" do
@@ -127,8 +132,8 @@ class LightnowCli < Formula
   end
 
   resource "typer" do
-    url "https://files.pythonhosted.org/packages/7c/f7/68adc395201b20b872d68e975386832e8005ffeacedd43a1d837a32815be/typer-0.26.8.tar.gz"
-    sha256 "c244a6bd558886fe3f8780efb6bdd28bb9aff005a94eedebaa5cb32926fe2f7e"
+    url "https://files.pythonhosted.org/packages/37/78/fda3361b56efc27944f24225f6ecd13d96d6fcfe37bd0eb34e2f4c63f9fc/typer-0.27.0.tar.gz"
+    sha256 "629bd12ea5d13a17148125d9a264f949eb171fb3f120f9b04d85873cab054fa5"
   end
 
   resource "typing-extensions" do
@@ -146,6 +151,6 @@ class LightnowCli < Formula
   end
 
   test do
-    assert_match "LightNow CLI 1.0.5", shell_output("#{bin}/lightnow --version")
+    assert_match version.to_s, shell_output("#{bin}/lightnow --version")
   end
 end
