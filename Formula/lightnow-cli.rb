@@ -3,8 +3,8 @@ class LightnowCli < Formula
 
   desc "Command-line interface for LightNow MCP configuration"
   homepage "https://github.com/lightnow-ai/lightnow-cli"
-  url "https://files.pythonhosted.org/packages/d4/2d/5c57ae04d5c3483cbc5a4a30b6d64ee901b0001c2dfdb5abc30e3a22b6dc/lightnow_cli-1.4.0.tar.gz"
-  sha256 "c1e81bb1a7c535d4f5744f28c807663ad28b6d2de55ba9d2aa08fd14f79681fb"
+  url "https://files.pythonhosted.org/packages/79/bc/26d0517349174f1220179633343066eed2f667567c5d55bd95efd215da5e/lightnow_cli-1.5.0.tar.gz"
+  sha256 "a8e2845e13cac559f41c81a08fe5850d27c03e297439f425a9a099f2987d749b"
   license "Apache-2.0"
 
   depends_on "rust" => :build
@@ -37,8 +37,8 @@ class LightnowCli < Formula
   end
 
   resource "filelock" do
-    url "https://files.pythonhosted.org/packages/02/f7/2165ef325da22d854b8f81ca4799395f2eb6afa55cdb52c7710f028b5336/filelock-3.30.2.tar.gz"
-    sha256 "1ea7c857465c897a4a6e64c1aace28ff6b83f5bc66c1c06ea148efa65bc2ec5d"
+    url "https://files.pythonhosted.org/packages/d6/01/9256cbe36eb2a84501920adad7d0e86738ab0ad60e64f4f5c38d7dd94dc1/filelock-3.30.3.tar.gz"
+    sha256 "6575420cd497ed15fc43a7ac46c48f6b6371c733fc40cf5a4e216871397bc1e2"
   end
 
   resource "h11" do
