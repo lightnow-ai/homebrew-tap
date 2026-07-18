@@ -38,6 +38,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # repository_dispatch captures the default-branch SHA when the event is
+          # created. A queued release must start from main as it exists when the
+          # job actually runs, after earlier serialized releases have completed.
+          ref: main
 
       - name: Register checkout as Homebrew tap
         run: |
@@ -69,4 +73,13 @@ jobs:
           git config user.email "development@lightnow.ai"
           git add "Formula/${FORMULA}.rb" releases.json
           git commit -m "chore(formula): update ${FORMULA} to ${VERSION}"
-          git push origin HEAD:main
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Main advanced while publishing; retrying (${attempt}/3)."
+          done
+          echo "Could not publish the verified formula after 3 attempts." >&2
+          exit 1
