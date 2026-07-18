@@ -3,8 +3,8 @@ class LightnowProxy < Formula
 
   desc "Local LightNow MCP proxy for centrally managed client configuration"
   homepage "https://github.com/lightnow-ai/lightnow-proxy"
-  url "https://files.pythonhosted.org/packages/5e/28/e4c3c4615d32756ada733a9f074258440cfa32cd4ccf67f7092aa4458d07/lightnow_proxy-1.5.0.tar.gz"
-  sha256 "cd460b74cd8e6038959ffbd96d85cf5f45f4338307f53e1db1cf9c912ed19724"
+  url "https://files.pythonhosted.org/packages/17/4d/79005f5f13b23d78fab3da33bcb2b958d195b63d48381a8d166a68a0e83c/lightnow_proxy-1.6.0.tar.gz"
+  sha256 "6f9129f3455440fe5c667625311c17b2133e95a77d2051aecc7fc317950eea68"
   license "Apache-2.0"
 
   depends_on "pkgconf" => :build
@@ -53,8 +53,8 @@ class LightnowProxy < Formula
   end
 
   resource "filelock" do
-    url "https://files.pythonhosted.org/packages/02/f7/2165ef325da22d854b8f81ca4799395f2eb6afa55cdb52c7710f028b5336/filelock-3.30.2.tar.gz"
-    sha256 "1ea7c857465c897a4a6e64c1aace28ff6b83f5bc66c1c06ea148efa65bc2ec5d"
+    url "https://files.pythonhosted.org/packages/d6/01/9256cbe36eb2a84501920adad7d0e86738ab0ad60e64f4f5c38d7dd94dc1/filelock-3.30.3.tar.gz"
+    sha256 "6575420cd497ed15fc43a7ac46c48f6b6371c733fc40cf5a4e216871397bc1e2"
   end
 
   resource "h11" do
