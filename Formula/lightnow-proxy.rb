@@ -3,8 +3,8 @@ class LightnowProxy < Formula
 
   desc "Local LightNow MCP proxy for centrally managed client configuration"
   homepage "https://github.com/lightnow-ai/lightnow-proxy"
-  url "https://files.pythonhosted.org/packages/34/d0/90d146664fcde3ddadea62e0d5f694ee03ce3e85f2ed1fe0b33bb4e0a0e8/lightnow_proxy-1.7.0.tar.gz"
-  sha256 "e8b3bdb5c8fce5d01c6dffbc6d90305a25f0b16f0364cec6978483a78f5c1d80"
+  url "https://files.pythonhosted.org/packages/f4/b1/bc5a40c0d447c337db5c71dd2322bbe10556b0a0573c3d5b382017113b09/lightnow_proxy-1.7.1.tar.gz"
+  sha256 "e8af10faf0d44cfca5751ab84176ac6eded4e37a60ad015cf0d46c9ef5e32a6e"
   license "Apache-2.0"
 
   depends_on "pkgconf" => :build
