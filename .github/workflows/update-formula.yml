@@ -48,6 +48,7 @@ jobs:
           tap_dir="$(brew --repository)/Library/Taps/lightnow-ai/homebrew-tap"
           mkdir -p "$(dirname "$tap_dir")"
           ln -s "$GITHUB_WORKSPACE" "$tap_dir"
+          brew trust --tap lightnow-ai/tap
 
       - name: Generate formula from published package
         run: scripts/update-formula.sh "$FORMULA" "$VERSION"
