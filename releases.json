@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-09T11:08:59Z",
+  "generated_at": "2026-11-12T15:31:21Z",
   "packages": {
     "lightnow-cli": {
       "version": "1.6.1"
     },
     "lightnow-proxy": {
-      "version": "1.12.0"
+      "version": "1.12.1"
     }
   }
 }
